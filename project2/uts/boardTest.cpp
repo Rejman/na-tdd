@@ -88,3 +88,14 @@ TEST_F(MyBoardTest, givenFresh10By10BoardAndFillItByRandomMove)
     EXPECT_EQ(board.getFieldState({x,y}), Field::X);
     
 }
+
+TEST_F(MyBoardTest, givenVariousTypeOfFields)
+{
+    Board board{Size{3,3}};
+    board.setFieldState({0,0}, Field::X);
+    board.setFieldState({1,1}, Field::O);
+
+    EXPECT_EQ(board.getFieldState({0,0}), Field::X);
+    EXPECT_EQ(board.getFieldState({1,1}), Field::O);
+    EXPECT_EQ(board.getFieldState({0,1}), Field::Empty);
+}

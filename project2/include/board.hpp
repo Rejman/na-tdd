@@ -1,9 +1,13 @@
 #pragma once
 #include "field.hpp"
+#include <vector> 
 
 #include <iostream>
 
 enum class Field;
+
+// 2D matrix
+using Matrix = std::vector<std::vector<Field>>;
 
 struct Size
 {
@@ -29,7 +33,14 @@ public:
 class Board : public BoardI
 {
 public:
-    Board(const Size& size): size(size){}
+    Board(const Size& size): size(size){
+
+        for(unsigned i=0;i<size.height;i++){
+            std::vector<Field> line(size.width, Field::Empty);
+            states.push_back(line);
+        }
+
+    }
     Size getSize() const override;
     Field getFieldState(const Coordinates&) const override;
     void setFieldState(const Coordinates&, Field) override;
@@ -37,4 +48,5 @@ public:
 private:
     Size size;
     Field state{Field::Empty};
+    Matrix states;
 };
