@@ -1,6 +1,8 @@
 #pragma once
 #include "field.hpp"
 
+#include <iostream>
+
 enum class Field;
 
 struct Size
